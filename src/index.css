@@ -12,3 +12,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.top-buffer {
+  margin-top:20px;
+}
+
+.center {
+  display:table-cell;
+  vertical-align:middle;
+  float:none;
+}
+
+.sectionTitle {
+  display: block;
+  text-align: left;
+}
+
+.rangeslider__label-item {
+  font-size: 12px !important;
+}
+
+h2 {
+  text-align: left;
+}
