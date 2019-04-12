@@ -1,0 +1,42 @@
+burn down:
+planning: 1hr
+
+
+understand problem = 2 - 1hr
+define UI= 2 - 2hr
+set ESLint  =  1
+write test cases = 2
+define backend ReST = 1
+define UI components style = 2
+add validations = 2
+define state and imple = 1
+remember react = 2 - 2 hr
+
+
+
+define public place for code = 1
+
+
+
+redux-observables = ?
+ramda = ?
+
+** formula **
+P = r * PV / 1 - (1 + r)^-n
+
+P = Payment => Monthly
+PV = Present Value => required value
+r = rate per period => Interest rate % 0.69
+n = number of periods => Number of months
+
+
+expres půjčku schválíme online do 5 minut = we will approve the express loan online within 5 minutes
+kolik si chci půjčit = how much I want to borrow
+Na jak dlouho = For how long
+Měsíců = Months
+Měsíčně Zaplatíte = Monthly Pay
+Úroková sazba od 6.5%, RPSN od 7.11%, pojištění 0  Kč/Měsíčně, poplatek za sjednáni online 0 Kč, celkem zaplatíte 130406.44 Kč = 
+Interest rate from 6.5%, APR from 7.11%, insurance 0 CZK / Monthly, fee for negotiation online 0 CZK, total pay 130406.44 CZK
+RPSN = APR (annual or annualized percentage rate)
+pokračovat = continue
+pojištění proti neschopnosti půjčku splácet = insurance against inability to repay the loan
