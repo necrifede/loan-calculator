@@ -1,6 +1,5 @@
-burn down:
+Planning
 planning: 1hr
-
 
 understand problem = 2 - 1hr
 define UI= 2 - 2hr
