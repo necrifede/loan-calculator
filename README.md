@@ -1,2 +1,2 @@
 # loan-calculator
-a fake loan calculator more work with react-redux and other technologies
+a fake loan calculator, practival example to work with react-redux and other technologies
