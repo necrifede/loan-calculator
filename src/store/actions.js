@@ -1,0 +1,7 @@
+const actions = {
+  UPDATE_LOAN: 'UPDATE_LOAN',
+  UPDATE_WITH_INSURANCE: 'UPDATE_WITH_INSURANCE',
+  UPDATE_MONTHS: 'UPDATE_MONTHS'
+}
+
+module.exports = actions
