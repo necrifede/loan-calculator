@@ -22,9 +22,6 @@ var app = express();
  * @param {Number} interest_rate - intereste applied for the bank
  * @param {Number} period_months - necessary time to pay the loan, in months
  */
-// ** formula **
-// 
-
 function loan(amount_required, interest_rate, period_months) {
   const total_to_pay = (amount_required * interest_rate)
   const periods_divisor = 1 - (Math.pow ((1 + interest_rate), period_months * -1))
@@ -51,13 +48,16 @@ app.get('/loan', function (req, res) {
     insurance: 0,
     total: monthly * Number(req.query.time)
   }
-  return res.status(200).send(result);
+  setTimeout(() => {
+    console.log('GET result: ', Date(), '\n', result)
+    return res.status(200).send(result);
+  }, 1000)
 });
 
 app.use(function(req, res, next) {
-    res.status(404).send("Sorry, that route doesn't exist.");
+  res.status(404).send("Sorry, that route doesn't exist.");
 });
 
 app.listen(3004, function () {
-    console.log('Example app listening on port 3004.');
+  console.log('Example app listening on port 3004.');
 });
