@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors')
 var app = express();
 /**
  * Simple server that get 3 query parameters:
@@ -7,6 +8,9 @@ var app = express();
  * and return an object with 
  * monthly, interest, apr, insurance, total
  */
+
+// TODO: Enable All CORS Requests, This is not good, control with CORS options
+app.use(cors())
 
 /**
  * calculate the monthly pay for a loan
