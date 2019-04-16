@@ -1,22 +1,22 @@
-// TODO: create config variables for type of actions
+import actions from './store/actions'
 
 function updateLoanValue(value) {
   return {
-    type: 'UPDATE_LOAN',
+    type: actions.UPDATE_LOAN,
     value
   }
 }
 
 function updateMonthsValue(value) {
   return {
-    type: 'UPDATE_MONTHS',
+    type: actions.UPDATE_MONTHS,
     value
   }
 }
 
 function updateInsuranceValue(value) {
   return {
-    type: 'UPDATE_WITH_INSURANCE',
+    type: actions.UPDATE_WITH_INSURANCE,
     value
   }
 }

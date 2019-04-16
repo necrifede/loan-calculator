@@ -1,3 +1,4 @@
+import { UPDATE_LOAN } from '../actions'
 
 const initialState = {
   value: 100000,
@@ -7,7 +8,7 @@ const initialState = {
 
 export default function borrow (state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_LOAN':
+    case UPDATE_LOAN:
       state = {...state, value: action.value}
       break;
   
