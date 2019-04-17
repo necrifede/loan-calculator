@@ -21,8 +21,16 @@ function updateInsuranceValue(value) {
   }
 }
 
+function updateSummaries(payload) {
+  return {
+    type: actions.UPDATE_SUMMARY_FIELDS,
+    payload
+  }
+}
+
 export {
   updateLoanValue,
   updateMonthsValue,
-  updateInsuranceValue
+  updateInsuranceValue,
+  updateSummaries
 }
