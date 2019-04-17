@@ -39,3 +39,10 @@ Interest rate from 6.5%, APR from 7.11%, insurance 0 CZK / Monthly, fee for nego
 RPSN = APR (annual or annualized percentage rate)
 pokračovat = continue
 pojištění proti neschopnosti půjčku splácet = insurance against inability to repay the loan
+
+epics
+- retrieve data from server, it should be cancelled if other data is retrieved
+
+- 0,5 seconds after slider or text input is updated
+
+- 

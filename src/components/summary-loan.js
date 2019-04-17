@@ -21,10 +21,10 @@ const SummaryLoan = ({ interest, apr, insurance, total }) => {
 
 const mapStateToProps = state => {
   return {
-    interest: 6.5,
-    apr: 7.11,
-    insurance: 0,
-    total: 130406.44
+    interest: state.summary.interest,
+    apr: state.summary.apr,
+    insurance: state.summary.insurance,
+    total: state.summary.total
   }
 }
 

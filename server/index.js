@@ -55,7 +55,7 @@ app.get('/loan', function (req, res) {
   setTimeout(() => {
     console.log('GET result: ', Date(), '\n', result)
     return res.status(200).send(result);
-  }, 1000)
+  }, 2000)
 });
 
 app.use(function(req, res, next) {
