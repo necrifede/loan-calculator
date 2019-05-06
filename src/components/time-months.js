@@ -2,20 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Slider from 'react-rangeslider'
 import { updateMonthsValue } from '../actionCreators.js'
+import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce'
 
 class TimeMonts extends Component {
 
+  constructor(props) {
+    super(props)
+    this.updateLoan = this.updateLoan.bind(this)
+    this.sliderChangeStart = this.sliderChangeStart.bind(this)
+    this.sliderChange = this.sliderChange.bind(this)
+    this.sliderChangeComplete = this.sliderChangeComplete.bind(this)
+  }
+
   updateLoan(event) {
-    this.props.updateLoan(event.target.value)
+    this.props.updateLoanValue(event.target.value)
+    this.props.cancelRequest()
+    this.props.requestCalculation()
   }
   sliderChangeStart(event) {
-    console.log("sliderChangeStart", event)
+    this.props.cancelRequest()
   }
-  sliderChange(event){
-    this.props.updateLoan(event)
+  sliderChange(value){
+    this.props.updateLoanValue(value)
   }
   sliderChangeComplete(event) {
-    console.log("sliderChangeComplete", event)
+    this.props.requestCalculation()
   }
   render () {
     return (
@@ -28,10 +39,10 @@ class TimeMonts extends Component {
               orientation="horizontal"
               labels={{[this.props.min]:`${this.props.min}Kč`, [this.props.max]:`${this.props.max}Kč`}} 
               step={1}
-              onChangeStart={this.sliderChangeStart.bind(this)}
-              onChange={this.sliderChange.bind(this)}
+              onChangeStart={this.sliderChangeStart}
+              onChange={this.sliderChange}
               tooltip={false}
-              onChangeComplete={this.sliderChangeComplete.bind(this)}
+              onChangeComplete={this.sliderChangeComplete}
               style={{fontSize: '12px'}}
             />
           </div>
@@ -40,7 +51,7 @@ class TimeMonts extends Component {
               className="loanAmount form-control center"
               type="text"
               rows="5"
-              onChange={this.updateLoan.bind(this)}
+              onChange={this.updateLoan}
               value={this.props.value}/>
           </div>
           <div className="col-sm-1 text-left">Kč</div>
@@ -59,10 +70,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateLoan: newValue => {
-      dispatch(updateMonthsValue(newValue))
-    },
-    dispatch
+    updateLoanValue: newValue => dispatch(updateMonthsValue(newValue)),
+    requestCalculation: () => dispatch(requestLoanCalcDebounce()),
+    cancelRequest: () => dispatch(cancelRequest())
   }
 }
 

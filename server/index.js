@@ -40,6 +40,7 @@ app.get('/', function (req, res) {
 app.get('/loan', function (req, res) {
   // Boolean value, which is not used
   // req.query.insurance
+  console.log('\x1b[32m%s= amount:%s, months:%s, insurance:%s\x1b[0m', 'Request Started', req.query.amount, req.query.time, req.query.insurance);
   if (isNaN(req.query.amount) || isNaN(req.query.time)){
     return res.status(400).send('Invalid non numeric values')
   }
