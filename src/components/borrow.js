@@ -19,17 +19,13 @@ class Borrow extends Component{
     this.props.updateLoan(event.target.value)
   }
   sliderChangeStart(event) {
-    this.props.dispatch(
-      this.props.cancelRequest()
-    )
+    this.props.cancelRequest()
   }
   sliderChange(event){
     this.props.updateLoan(event)
   }
   sliderChangeComplete(event) {
-    this.props.dispatch(
-      this.props.requestLoanCalcDebounce(this.props.value, this.props.time, this.props.insurance)
-    )
+    this.props.requestCalculation(this.props.value, this.props.time, this.props.insurance)
   }
   render() {
     return (
@@ -78,9 +74,10 @@ const mapDispatchToProps = dispatch => {
     updateLoan: newValue => {
       dispatch(updateLoanValue(newValue))
     },
-    requestLoanCalcDebounce,
-    cancelRequest,
-    dispatch
+    requestCalculation: (value, time, insurance) => 
+      dispatch(requestLoanCalcDebounce(value, time, insurance)),
+    cancelRequest: () => 
+      dispatch(cancelRequest())
   }
 }
 
