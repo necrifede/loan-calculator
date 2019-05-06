@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateInsuranceValue } from '../actionCreators'
+import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce'
 
 /**
  * Control the UI component Radio buttons to select the option with or without insurance
  */
 class Insurance extends Component {
+  updateBoolInsurance(value) {
+    this.props.updateInsurance(value)
+    this.props.cancelRequest()
+    this.props.requestCalculation()
+  }
+
   render () {
     return (
       <div>
@@ -19,14 +26,14 @@ class Insurance extends Component {
             <input type="radio" id="withInsuranceRadio" className="custom-control-input"
             name="insuranceRadio"
             checked={this.props.with === true}
-            onChange={() => this.props.updateInsurance(true)}/>
+            onChange={this.updateBoolInsurance.bind(this, true)}/>
             <label className="custom-control-label" htmlFor="withInsuranceRadio">With insurance</label>
           </div>
           <div className="custom-control custom-radio custom-control-inline">
             <input type="radio" id="withoutInsuranceRadio"  className="custom-control-input" 
             name="insuranceRadio"
             checked={this.props.with === false}
-            onChange={() => this.props.updateInsurance(false)}/>
+            onChange={this.updateBoolInsurance.bind(this, false)}/>
             <label className="custom-control-label" htmlFor="withoutInsuranceRadio">Without insurance</label>
           </div>
         </div>
@@ -43,10 +50,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateInsurance: newValue => {
-      dispatch(updateInsuranceValue(newValue))
-    },
-    dispatch
+    updateInsurance: newValue => dispatch(updateInsuranceValue(newValue)),
+    requestCalculation: () => dispatch(requestLoanCalcDebounce()),
+    cancelRequest: () => dispatch(cancelRequest())
   }
 }
 

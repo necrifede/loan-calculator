@@ -16,6 +16,7 @@ class TimeMonts extends Component {
 
   updateLoan(event) {
     this.props.updateLoanValue(event.target.value)
+    this.props.cancelRequest()
     this.props.requestCalculation()
   }
   sliderChangeStart(event) {
