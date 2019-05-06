@@ -4,6 +4,8 @@ import Slider from 'react-rangeslider'
 import { input } from 'react-bootstrap';
 import { updateLoanValue } from '../actionCreators.js'
 
+import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce'
+
 // TODO: refactor constant values in attributes
 // TODO: Warning: Failed prop type: Invalid prop `value` of type `string` supplied to `Slider`, expected `number`.
 // TODO: control integer values
@@ -17,13 +19,17 @@ class Borrow extends Component{
     this.props.updateLoan(event.target.value)
   }
   sliderChangeStart(event) {
-    console.log("sliderChangeStart", event)
+    this.props.dispatch(
+      this.props.cancelRequest()
+    )
   }
   sliderChange(event){
     this.props.updateLoan(event)
   }
   sliderChangeComplete(event) {
-    console.log("sliderChangeComplete", event)
+    this.props.dispatch(
+      this.props.requestLoanCalcDebounce(this.props.value, this.props.time, this.props.insurance)
+    )
   }
   render() {
     return (
@@ -61,7 +67,9 @@ const mapStateToProps = state => {
   return {
     value: state.borrow.value,
     min: state.borrow.min,
-    max: state.borrow.max
+    max: state.borrow.max,
+    time: state.months.value,
+    insurance: state.insurance.with
   }
 }
 
@@ -70,6 +78,8 @@ const mapDispatchToProps = dispatch => {
     updateLoan: newValue => {
       dispatch(updateLoanValue(newValue))
     },
+    requestLoanCalcDebounce,
+    cancelRequest,
     dispatch
   }
 }

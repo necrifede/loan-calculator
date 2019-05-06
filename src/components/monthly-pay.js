@@ -9,7 +9,7 @@ const MonthlyPay = ({ monthly, requestLoanCalc }) => {
   return (
     <div className="row">
       <p className="row">Monthly Pay</p>
-      <h1 className="row">{`${monthly} Kč`}</h1>
+      <h1 className="row">{`${Math.trunc(monthly)} Kč`}</h1>
       <Button  className="row" type="submit" onClick={() => requestLoanCalc(10000, 24, 0.6)}>Continue</Button>
     </div>
   )
@@ -17,7 +17,7 @@ const MonthlyPay = ({ monthly, requestLoanCalc }) => {
 
 const mapStateToProps = state => {
   return {
-    monthly: state.summary.total
+    monthly: state.summary.monthly
   }
 }
 
