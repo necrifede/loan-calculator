@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Slider from 'react-rangeslider'
 import { input } from 'react-bootstrap';
 import { updateLoanValue } from '../actionCreators.js'
-
 import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce'
 
 // TODO: refactor constant values in attributes
