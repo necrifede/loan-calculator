@@ -1,8 +1,8 @@
-import { combineEpics } from "redux-observable";
-import calculateLoanEpic from "./calculateLoan";
-import calculateLoanDebounceEpic from "./calcLoanDebounce";
+import { combineEpics } from 'redux-observable';
+import calculateLoanEpic from './calculateLoan';
+import calculateLoanDebounceEpic from './calcLoanDebounce';
 
-//rootEpic
+// rootEpic
 const epics = combineEpics(calculateLoanDebounceEpic, calculateLoanEpic);
 
 export default epics;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // RPSN = APR (annual or annualized percentage rate)
 
 /**
- * 
+ *
  * @param {number} interest - Interest taken into account for the payment, expresed in percentage
  * @param {number} apr - from czech 'RPSN', it means APR (annual or annualized percentage rate)
  * @param {number} insurance - Percentage taken into account for the calculation
@@ -16,16 +16,16 @@ const SummaryLoan = ({ interest, apr, insurance, total }) => {
       <p>{`Interest rate from ${interest}%, APR from ${apr}%, insurance ${insurance} CZK / Monthly, 
       fee for negotiation online 0 CZK, total pay ${total} CZK`}</p>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => {
   return {
     interest: state.summary.interest,
     apr: state.summary.apr,
     insurance: state.summary.insurance,
-    total: state.summary.total
-  }
-}
+    total: state.summary.total,
+  };
+};
 
-export default connect(mapStateToProps)(SummaryLoan)
+export default connect(mapStateToProps)(SummaryLoan);
