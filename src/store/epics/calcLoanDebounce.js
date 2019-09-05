@@ -2,8 +2,7 @@
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
 import { updateSummaries } from '../../actionCreators';
-import { CALC_LOAN_SEND_DEBOUNCE } from '../actions';
-import { QUERY_CANCELLED } from '../actions';
+import { CALC_LOAN_SEND_DEBOUNCE, QUERY_CANCELLED } from '../actions';
 import { server } from '../../config';
 
 const { map, switchMap, debounceTime, takeUntil, withLatestFrom } = require('rxjs/operators');
@@ -11,7 +10,7 @@ const { map, switchMap, debounceTime, takeUntil, withLatestFrom } = require('rxj
 const url = `http://${server.host}:${server.port}`;
 
 export const requestLoanCalcDebounce = () => ({ type: CALC_LOAN_SEND_DEBOUNCE });
-export const cancelRequest = () => ({ type: QUERY_CANCELLED, payload: { } });
+export const cancelRequest = () => ({ type: QUERY_CANCELLED, payload: {} });
 
 const calculateLoanDebounceEpic = (action$, state$) => action$.pipe(
   ofType(CALC_LOAN_SEND_DEBOUNCE),

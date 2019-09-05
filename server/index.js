@@ -69,7 +69,7 @@ app.get('/loan', function(req, res) {
   }, 2000);
 });
 
-app.use(function(req, res, next) {
+app.use(function(req, res) {
   res.status(404).send("Sorry, that route doesn't exist.");
 });
 

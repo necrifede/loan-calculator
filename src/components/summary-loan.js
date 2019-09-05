@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // RPSN = APR (annual or annualized percentage rate)
 
@@ -18,6 +19,13 @@ const SummaryLoan = ({ interest, apr, insurance, total }) => {
     </div>
   );
 };
+
+SummaryLoan.propTypes = {
+  apr: PropTypes.number,
+  insurance: PropTypes.number,
+  interest: PropTypes.number,
+  total: PropTypes.number
+}
 
 const mapStateToProps = state => {
   return {

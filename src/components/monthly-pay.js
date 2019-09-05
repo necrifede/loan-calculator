@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { requestLoanCalc } from '../store/epics/calculateLoan';
 /**
  * Display the amount to pay monthly
@@ -14,6 +15,11 @@ const MonthlyPay = ({ monthly, requestLoanCalc }) => {
     </div>
   );
 };
+
+MonthlyPay.propTypes = {
+  monthly: PropTypes.number,
+  requestLoanCalc: PropTypes.func
+}
 
 const mapStateToProps = state => {
   return {
