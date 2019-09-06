@@ -1,13 +1,13 @@
 import { UPDATE_WITH_INSURANCE } from '../actions';
 
 const initialState = {
-  with: false,
+  withi: false,
 };
 
 export default function insurance(state = initialState, action) {
   switch (action.type) {
     case UPDATE_WITH_INSURANCE:
-      state = {...state, with: action.value};
+      state = {...state, withi: action.value};
       break;
 
     default:

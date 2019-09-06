@@ -7,7 +7,7 @@ import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanD
 /**
  * Control the UI component Radio buttons to select the option with or without insurance
  */
-const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, witha }) =>
+const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, withi }) =>
   (
     <div>
       <div className="row top-buffer">
@@ -20,7 +20,7 @@ const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, witha }
           <input
 	type="radio" id="withInsuranceRadio" className="custom-control-input"
 	name="insuranceRadio"
-	checked={witha === true}
+	checked={withi === true}
 	onChange={() => { updateInsurance(true); cancelRequest(); requestCalculation(); }}
           />
           <label className="custom-control-label" htmlFor="withInsuranceRadio">With insurance</label>
@@ -29,7 +29,7 @@ const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, witha }
           <input
 	type="radio" id="withoutInsuranceRadio" className="custom-control-input"
 	name="insuranceRadio"
-	checked={witha === false}
+	checked={withi === false}
 	onChange={() => { updateInsurance(false); cancelRequest(); requestCalculation(); }}
           />
           <label className="custom-control-label" htmlFor="withoutInsuranceRadio">Without insurance</label>
@@ -42,12 +42,12 @@ Insurance.propTypes = {
   cancelRequest: PropTypes.func,
   requestCalculation: PropTypes.func,
   updateInsurance: PropTypes.func,
-  witha: PropTypes.bool
+  withi: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
-    with: state.insurance.with,
+    withi: state.insurance.withi,
   };
 };
 

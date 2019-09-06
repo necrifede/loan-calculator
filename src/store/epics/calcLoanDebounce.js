@@ -17,7 +17,7 @@ const calculateLoanDebounceEpic = (action$, state$) => action$.pipe(
   debounceTime(1000),
   withLatestFrom(state$),
   switchMap(([, state]) =>
-    ajax.getJSON(`${url}/loan?amount=${state.borrow.value}&time=${state.months.value}&insurance=${state.insurance.with}`).pipe(
+    ajax.getJSON(`${url}/loan?amount=${state.borrow.value}&time=${state.months.value}&insurance=${state.insurance.withi}`).pipe(
       map(response => updateSummaries(response)),
       takeUntil(action$.ofType(QUERY_CANCELLED))
     )
