@@ -7,33 +7,38 @@ import { requestLoanCalc } from '../store/epics/calculateLoan';
  * Display the amount to pay monthly
  */
 const MonthlyPay = ({ monthly, requestLoanCalc }) => {
-  return (
-    <div className="container">
-      <p className="container">Monthly Pay</p>
-      <h1 className="container">{`${Math.trunc(monthly)} Kč`}</h1>
-      <Button className="row" type="submit" onClick={() => requestLoanCalc(10000, 24, 0.6)}>Continue</Button>
-    </div>
-  );
+	return (
+		<div className="container">
+			<p className="container">Monthly Pay</p>
+			<h1 className="container">{`${Math.trunc(monthly)} Kč`}</h1>
+			<Button className="row" type="submit" onClick={() => requestLoanCalc(10000, 24, 0.6)}>
+				Continue
+			</Button>
+		</div>
+	);
 };
 
 MonthlyPay.propTypes = {
-  monthly: PropTypes.number,
-  requestLoanCalc: PropTypes.func
-}
+	monthly: PropTypes.number,
+	requestLoanCalc: PropTypes.func,
+};
 
 const mapStateToProps = state => {
-  return {
-    monthly: state.summary.monthly,
-  };
+	return {
+		monthly: state.summary.monthly,
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    requestLoanCalc: (amount, time, insurance) => {
-      dispatch(requestLoanCalc(amount, time, insurance));
-    },
-    dispatch,
-  };
+	return {
+		requestLoanCalc: (amount, time, insurance) => {
+			dispatch(requestLoanCalc(amount, time, insurance));
+		},
+		dispatch,
+	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MonthlyPay);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(MonthlyPay);

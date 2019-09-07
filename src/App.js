@@ -11,22 +11,22 @@ import SummaryLoan from './components/summary-loan';
 import MonthlyPay from './components/monthly-pay';
 
 const App = () => (
-  <Provider store={store}>
-    <div className="App container">
-      <div className="row">
-        <div className="col-sm-8">
-          <h2>Loan Calculator</h2>
-          <Borrow />
-          <TimeMonths />
-          <Insurance />
-          <SummaryLoan />
-        </div>
-        <div className="col-sm-4 vertical-center">
-          <MonthlyPay />
-        </div>
-      </div>
-    </div>
-  </Provider>
-)
+	<Provider store={store}>
+		<div className="App container">
+			<div className="row">
+				<div className="col-sm-8">
+					<h2>Loan Calculator</h2>
+					<Borrow />
+					<TimeMonths />
+					<Insurance />
+					<SummaryLoan />
+				</div>
+				<div className="col-sm-4 vertical-center">
+					<MonthlyPay />
+				</div>
+			</div>
+		</div>
+	</Provider>
+);
 
 export default App;

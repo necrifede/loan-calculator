@@ -1,4 +1,4 @@
 module.exports = {
 	root: true,
-	extends: ['react-union', 'prettier'],
+	extends: ['prettier', 'react-union'],
 };

@@ -12,28 +12,28 @@ import PropTypes from 'prop-types';
  * @param {number} total - Total amount payed after complete all payments
  */
 const SummaryLoan = ({ interest, apr, insurance, total }) => {
-  return (
-    <div className="row top-buffer">
-      <p>{`Interest rate from ${interest}%, APR from ${apr}%, insurance ${insurance} CZK / Monthly, 
+	return (
+		<div className="row top-buffer">
+			<p>{`Interest rate from ${interest}%, APR from ${apr}%, insurance ${insurance} CZK / Monthly, 
       fee for negotiation online 0 CZK, total pay ${total} CZK`}</p>
-    </div>
-  );
+		</div>
+	);
 };
 
 SummaryLoan.propTypes = {
-  apr: PropTypes.number,
-  insurance: PropTypes.number,
-  interest: PropTypes.number,
-  total: PropTypes.number
-}
+	apr: PropTypes.number,
+	insurance: PropTypes.number,
+	interest: PropTypes.number,
+	total: PropTypes.number,
+};
 
 const mapStateToProps = state => {
-  return {
-    interest: state.summary.interest,
-    apr: state.summary.apr,
-    insurance: state.summary.insurance,
-    total: state.summary.total,
-  };
+	return {
+		interest: state.summary.interest,
+		apr: state.summary.apr,
+		insurance: state.summary.insurance,
+		total: state.summary.total,
+	};
 };
 
 export default connect(mapStateToProps)(SummaryLoan);

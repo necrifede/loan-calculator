@@ -28,51 +28,47 @@ app.use(cors());
  * @param {Number} period_months - necessary time to pay the loan, in months
  */
 function loan(amount_required, interest_rate, period_months) {
-  const total_to_pay = amount_required * interest_rate;
-  const periods_divisor = 1 - Math.pow(1 + interest_rate, period_months * -1);
-  return total_to_pay / periods_divisor;
+	const total_to_pay = amount_required * interest_rate;
+	const periods_divisor = 1 - Math.pow(1 + interest_rate, period_months * -1);
+	return total_to_pay / periods_divisor;
 }
 
 app.get('/', function(req, res) {
-  res.send('Home page <b>Loan Calculator</b>, go to /loan');
+	res.send('Home page <b>Loan Calculator</b>, go to /loan');
 });
 
 app.get('/loan', function(req, res) {
-  // Boolean value, which is not used
-  // req.query.insurance
-  console.log(
-    '\x1b[32m%s= amount:%s, months:%s, insurance:%s\x1b[0m',
-    'Request Started',
-    req.query.amount,
-    req.query.time,
-    req.query.insurance
-  );
-  if (isNaN(req.query.amount) || isNaN(req.query.time)) {
-    return res.status(400).send('Invalid non numeric values');
-  }
-  const interest = 0.069;
-  const monthly = loan(
-    Number(req.query.amount),
-    interest,
-    Number(req.query.time)
-  );
-  const result = {
-    monthly,
-    interest,
-    apr: 0,
-    insurance: 0,
-    total: monthly * Number(req.query.time),
-  };
-  setTimeout(() => {
-    console.log('GET result: ', Date(), '\n', result);
-    return res.status(200).send(result);
-  }, 2000);
+	// Boolean value, which is not used
+	// req.query.insurance
+	console.log(
+		'\x1b[32m%s= amount:%s, months:%s, insurance:%s\x1b[0m',
+		'Request Started',
+		req.query.amount,
+		req.query.time,
+		req.query.insurance
+	);
+	if (isNaN(req.query.amount) || isNaN(req.query.time)) {
+		return res.status(400).send('Invalid non numeric values');
+	}
+	const interest = 0.069;
+	const monthly = loan(Number(req.query.amount), interest, Number(req.query.time));
+	const result = {
+		monthly,
+		interest,
+		apr: 0,
+		insurance: 0,
+		total: monthly * Number(req.query.time),
+	};
+	setTimeout(() => {
+		console.log('GET result: ', Date(), '\n', result);
+		return res.status(200).send(result);
+	}, 2000);
 });
 
 app.use(function(req, res) {
-  res.status(404).send("Sorry, that route doesn't exist.");
+	res.status(404).send("Sorry, that route doesn't exist.");
 });
 
 app.listen(3004, function() {
-  console.log('Example app listening on port 3004.');
+	console.log('Example app listening on port 3004.');
 });
