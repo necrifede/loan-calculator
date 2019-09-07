@@ -38,8 +38,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/loan', function(req, res) {
-	// Boolean value, which is not used
-	// req.query.insurance
+	// TODO: The value req.query.insurance is not being use, it is boolean.
 	console.log(
 		'\x1b[32m%s= amount:%s, months:%s, insurance:%s\x1b[0m',
 		'Request Started',

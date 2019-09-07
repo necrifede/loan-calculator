@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// RPSN = APR (annual or annualized percentage rate)
-
 /**
+ * Component shows a label with a summary of loan information
  *
  * @param {number} interest - Interest taken into account for the payment, expresed in percentage
  * @param {number} apr - from czech 'RPSN', it means APR (annual or annualized percentage rate)
