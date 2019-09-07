@@ -2,11 +2,9 @@ import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
 import { updateSummaries } from '../../actionCreators';
 import { CALC_LOAN_SEND_DEBOUNCE, QUERY_CANCELLED } from '../actions';
-import { server } from '../../config';
+import { Requests } from '../../utils';
 
 const { map, switchMap, debounceTime, takeUntil, withLatestFrom } = require('rxjs/operators');
-
-const url = `http://${server.host}:${server.port}`;
 
 export const requestLoanCalcDebounce = () => ({ type: CALC_LOAN_SEND_DEBOUNCE });
 export const cancelRequest = () => ({ type: QUERY_CANCELLED, payload: {} });
@@ -19,8 +17,7 @@ const calculateLoanDebounceEpic = (action$, state$) =>
 		switchMap(([, state]) =>
 			ajax
 				.getJSON(
-					`${url}/loan?amount=${state.borrow.value}
-          &time=${state.months.value}&insurance=${state.insurance.withi}`
+					Requests.adjustLoan(state.borrow.value, state.months.value, state.insurance.withi)
 				)
 				.pipe(
 					map(response => updateSummaries(response)),
