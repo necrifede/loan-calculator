@@ -7,7 +7,7 @@ import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanD
 /**
  * Control the UI component Radio buttons to select the option with or without insurance
  */
-const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, withi }) => (
+const Insurance = ({ updateInsuranceValue, cancelRequest, requestLoanCalcDebounce, withi }) => (
 	<div>
 		<div className="row top-buffer">
 			<div className="col-sm-12">
@@ -23,9 +23,9 @@ const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, withi }
 					name="insuranceRadio"
 					checked={withi === true}
 					onChange={() => {
-						updateInsurance(true);
+						updateInsuranceValue(true);
 						cancelRequest();
-						requestCalculation();
+						requestLoanCalcDebounce();
 					}}
 				/>
 				<label className="custom-control-label" htmlFor="withInsuranceRadio">
@@ -40,9 +40,9 @@ const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, withi }
 					name="insuranceRadio"
 					checked={withi === false}
 					onChange={() => {
-						updateInsurance(false);
+						updateInsuranceValue(false);
 						cancelRequest();
-						requestCalculation();
+						requestLoanCalcDebounce();
 					}}
 				/>
 				<label className="custom-control-label" htmlFor="withoutInsuranceRadio">
@@ -55,26 +55,14 @@ const Insurance = ({ updateInsurance, cancelRequest, requestCalculation, withi }
 
 Insurance.propTypes = {
 	cancelRequest: PropTypes.func,
-	requestCalculation: PropTypes.func,
-	updateInsurance: PropTypes.func,
+	requestLoanCalcDebounce: PropTypes.func,
+	updateInsuranceValue: PropTypes.func,
 	withi: PropTypes.bool,
 };
 
-const mapStateToProps = state => {
-	return {
-		withi: state.insurance.withi,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		updateInsurance: newValue => dispatch(updateInsuranceValue(newValue)),
-		requestCalculation: () => dispatch(requestLoanCalcDebounce()),
-		cancelRequest: () => dispatch(cancelRequest()),
-	};
-};
+const mapStateToProps = state => ({ withi: state.insurance.withi });
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	{ updateInsuranceValue, requestLoanCalcDebounce, cancelRequest }
 )(Insurance);

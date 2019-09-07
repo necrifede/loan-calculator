@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { updateMonthsValue } from '../actionCreators';
 import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce';
 
-const TimeMonths = ({ updateLoanValue, cancelRequest, requestCalculation, value, min, max }) => (
+const TimeMonths = ({ updateMonthsValue, cancelRequest, requestLoanCalcDebounce, value, min, max }) => (
 	<div className="row top-buffer">
 		<div className="col-sm-8">
 			<h5 className="sectionTitle">For how long</h5>
@@ -17,9 +17,9 @@ const TimeMonths = ({ updateLoanValue, cancelRequest, requestCalculation, value,
 				labels={{ [min]: `${min}Kč`, [max]: `${max}Kč` }}
 				step={1}
 				onChangeStart={cancelRequest}
-				onChange={value => updateLoanValue(value)}
+				onChange={value => updateMonthsValue(value)}
 				tooltip={false}
-				onChangeComplete={requestCalculation}
+				onChangeComplete={requestLoanCalcDebounce}
 				style={{ fontSize: '12px' }}
 			/>
 		</div>
@@ -29,9 +29,9 @@ const TimeMonths = ({ updateLoanValue, cancelRequest, requestCalculation, value,
 				type="text"
 				rows="5"
 				onChange={event => {
-					updateLoanValue(event.target.value);
+					updateMonthsValue(event.target.value);
 					cancelRequest();
-					requestCalculation();
+					requestLoanCalcDebounce();
 				}}
 				value={value}
 			/>
@@ -44,28 +44,18 @@ TimeMonths.propTypes = {
 	cancelRequest: PropTypes.func,
 	max: PropTypes.number,
 	min: PropTypes.number,
-	requestCalculation: PropTypes.func,
-	updateLoanValue: PropTypes.func,
+	requestLoanCalcDebounce: PropTypes.func,
+	updateMonthsValue: PropTypes.func,
 	value: PropTypes.number,
 };
 
-const mapStateToProps = state => {
-	return {
-		value: state.months.value,
-		min: state.months.min,
-		max: state.months.max,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		updateLoanValue: newValue => dispatch(updateMonthsValue(newValue)),
-		requestCalculation: () => dispatch(requestLoanCalcDebounce()),
-		cancelRequest: () => dispatch(cancelRequest()),
-	};
-};
+const mapStateToProps = state => ({
+	value: state.months.value,
+	min: state.months.min,
+	max: state.months.max,
+});
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	{ updateMonthsValue, requestLoanCalcDebounce, cancelRequest }
 )(TimeMonths);

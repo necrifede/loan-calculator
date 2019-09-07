@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-rangeslider';
-import { input } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { updateLoanValue } from '../actionCreators';
 import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce';
@@ -13,7 +12,7 @@ import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanD
 /**
  * Shows in UI the amount of lend, or to borrow.
  */
-const Borrow = ({ updateLoanValue, cancelRequest, requestCalculation, value, min, max }) => (
+const Borrow = ({ updateLoanValue, cancelRequest, requestLoanCalcDebounce, value, min, max }) => (
 	<div className="row  top-buffer">
 		<div className="col-sm-8">
 			<h5 className="sectionTitle">How much I want to borrow</h5>
@@ -27,7 +26,7 @@ const Borrow = ({ updateLoanValue, cancelRequest, requestCalculation, value, min
 				onChangeStart={cancelRequest}
 				onChange={value => updateLoanValue(value)}
 				tooltip={false}
-				onChangeComplete={requestCalculation}
+				onChangeComplete={requestLoanCalcDebounce}
 				style={{ fontSize: '12px' }}
 			/>
 		</div>
@@ -39,7 +38,7 @@ const Borrow = ({ updateLoanValue, cancelRequest, requestCalculation, value, min
 				onChange={event => {
 					updateLoanValue(event.target.value);
 					cancelRequest();
-					requestCalculation();
+					requestLoanCalcDebounce();
 				}}
 				value={value}
 			/>
@@ -52,28 +51,18 @@ Borrow.propTypes = {
 	cancelRequest: PropTypes.func,
 	max: PropTypes.number,
 	min: PropTypes.number,
-	requestCalculation: PropTypes.func,
+	requestLoanCalcDebounce: PropTypes.func,
 	updateLoanValue: PropTypes.func,
 	value: PropTypes.number,
 };
 
-const mapStateToProps = state => {
-	return {
-		value: state.borrow.value,
-		min: state.borrow.min,
-		max: state.borrow.max,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		updateLoanValue: newValue => dispatch(updateLoanValue(newValue)),
-		requestCalculation: () => dispatch(requestLoanCalcDebounce()),
-		cancelRequest: () => dispatch(cancelRequest()),
-	};
-};
+const mapStateToProps = state => ({
+	value: state.borrow.value,
+	min: state.borrow.min,
+	max: state.borrow.max,
+});
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	{ updateLoanValue, requestLoanCalcDebounce, cancelRequest }
 )(Borrow);

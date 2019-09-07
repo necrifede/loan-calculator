@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { requestLoanCalc } from '../store/epics/calculateLoan';
+
 /**
  * Display the amount to pay monthly
  */
@@ -23,22 +24,9 @@ MonthlyPay.propTypes = {
 	requestLoanCalc: PropTypes.func,
 };
 
-const mapStateToProps = state => {
-	return {
-		monthly: state.summary.monthly,
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		requestLoanCalc: (amount, time, insurance) => {
-			dispatch(requestLoanCalc(amount, time, insurance));
-		},
-		dispatch,
-	};
-};
+const mapStateToProps = state => ({ monthly: state.summary.monthly });
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	{ requestLoanCalc }
 )(MonthlyPay);
