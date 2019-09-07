@@ -26,13 +26,11 @@ SummaryLoan.propTypes = {
 	total: PropTypes.number,
 };
 
-const mapStateToProps = state => {
-	return {
-		interest: state.summary.interest,
-		apr: state.summary.apr,
-		insurance: state.summary.insurance,
-		total: state.summary.total,
-	};
-};
+const mapStateToProps = state => ({
+	interest: state.summary.interest,
+	apr: state.summary.apr,
+	insurance: state.summary.insurance,
+	total: state.summary.total,
+});
 
 export default connect(mapStateToProps)(SummaryLoan);
