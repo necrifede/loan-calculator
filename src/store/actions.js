@@ -8,4 +8,4 @@ const actions = {
 	QUERY_CANCELLED: 'QUERY_CANCELLED',
 };
 
-module.exports = actions;
+export default actions;

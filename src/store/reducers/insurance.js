@@ -1,4 +1,6 @@
-import { UPDATE_WITH_INSURANCE } from '../actions';
+import actions from '../actions';
+
+const { UPDATE_WITH_INSURANCE } = actions;
 
 const initialState = {
 	withi: false,

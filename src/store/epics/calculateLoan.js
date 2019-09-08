@@ -1,10 +1,11 @@
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
+import { map, mergeMap } from 'rxjs/operators';
 import { updateSummaries } from '../../actionCreators';
-import CALC_LOAN_SEND from '../actions';
+import actions from '../actions';
 import { Requests } from '../../utils';
 
-const { map, mergeMap } = require('rxjs/operators');
+const { CALC_LOAN_SEND } = actions;
 
 export const requestLoanCalc = (amount, time, insurance) => ({
 	type: CALC_LOAN_SEND,

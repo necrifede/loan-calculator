@@ -1,4 +1,6 @@
-import { UPDATE_SUMMARY_FIELDS } from '../actions';
+import actions from '../actions';
+
+const { UPDATE_SUMMARY_FIELDS } = actions;
 
 const initialState = {
 	monthly: 0,

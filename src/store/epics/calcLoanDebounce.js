@@ -1,10 +1,12 @@
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
+import { map, switchMap, debounceTime, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { updateSummaries } from '../../actionCreators';
-import { CALC_LOAN_SEND_DEBOUNCE, QUERY_CANCELLED } from '../actions';
 import { Requests } from '../../utils';
+import actions from '../actions';
 
-const { map, switchMap, debounceTime, takeUntil, withLatestFrom } = require('rxjs/operators');
+const  { CALC_LOAN_SEND_DEBOUNCE, QUERY_CANCELLED } = actions;
+
 
 export const requestLoanCalcDebounce = () => ({ type: CALC_LOAN_SEND_DEBOUNCE });
 export const cancelRequest = () => ({ type: QUERY_CANCELLED, payload: {} });
