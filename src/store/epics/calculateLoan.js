@@ -5,16 +5,9 @@ import { updateSummaries } from '../../actionCreators';
 import actions from '../actions';
 import { Requests } from '../../utils';
 
-const { CALC_LOAN_SEND } = actions;
-
-export const requestLoanCalc = (amount, time, insurance) => ({
-	type: CALC_LOAN_SEND,
-	payload: { amount, time, insurance },
-});
-
 const calculateLoanEpic = action$ =>
 	action$.pipe(
-		ofType(CALC_LOAN_SEND),
+		ofType(actions.CALC_LOAN_SEND),
 		mergeMap(({ payload }) =>
 			ajax
 				.getJSON(Requests.adjustLoan(payload.amount, payload.time, payload.insurance))

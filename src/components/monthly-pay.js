@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { requestLoanCalc } from '../store/epics/calculateLoan';
+import { requestLoanCalc } from '../actionCreators';
 
 /**
  * Display the amount to pay monthly

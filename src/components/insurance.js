@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateInsuranceValue } from '../actionCreators';
-import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce';
+import { updateInsuranceValue, requestLoanCalcDebounce, cancelRequest } from '../actionCreators';
 
 /**
  * Control the UI component Radio buttons to select the option with or without insurance

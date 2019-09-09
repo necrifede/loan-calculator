@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-rangeslider';
 import PropTypes from 'prop-types';
-import { updateLoanValue } from '../actionCreators';
-import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce';
+import { updateLoanValue, requestLoanCalcDebounce, cancelRequest } from '../actionCreators';
 
 // TODO: refactor constant values in attributes
 // TODO: Warning: Failed prop type: Invalid prop `value` of type `string` supplied to `Slider`, expected `number`.
