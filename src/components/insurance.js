@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateInsuranceValue, requestLoanCalcDebounce, cancelRequest } from '../actionCreators';
+import { updateInsuranceValue, requestLoanCalcDebounce, cancelRequest } from '../store/actionCreators';
 
 /**
  * Control the UI component Radio buttons to select the option with or without insurance

@@ -1,4 +1,4 @@
-import actions from './store/actions';
+import actions from './actions';
 
 const updateLoanValue = value => ({
 	type: actions.UPDATE_LOAN,

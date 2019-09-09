@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-rangeslider';
 import PropTypes from 'prop-types';
-import { updateMonthsValue, requestLoanCalcDebounce, cancelRequest } from '../actionCreators';
+import { updateMonthsValue, requestLoanCalcDebounce, cancelRequest } from '../store/actionCreators';
 
 const TimeMonths = ({
 	updateMonthsValue,
