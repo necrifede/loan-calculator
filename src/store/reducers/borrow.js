@@ -1,4 +1,6 @@
-import { UPDATE_LOAN } from '../actions';
+import { actions } from '../actionCreators';
+
+const { UPDATE_LOAN } = actions;
 
 const initialState = {
 	value: 100000,

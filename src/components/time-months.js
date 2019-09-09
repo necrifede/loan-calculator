@@ -2,10 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-rangeslider';
 import PropTypes from 'prop-types';
-import { updateMonthsValue } from '../actionCreators';
-import { requestLoanCalcDebounce, cancelRequest } from '../store/epics/calcLoanDebounce';
+import { updateMonthsValue, requestLoanCalcDebounce, cancelRequest } from '../store/actionCreators';
 
-const TimeMonths = ({ updateMonthsValue, cancelRequest, requestLoanCalcDebounce, value, min, max }) => (
+const TimeMonths = ({
+	updateMonthsValue,
+	cancelRequest,
+	requestLoanCalcDebounce,
+	value,
+	min,
+	max,
+}) => (
 	<div className="row top-buffer">
 		<div className="col-sm-8">
 			<h5 className="sectionTitle">For how long</h5>

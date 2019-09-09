@@ -1,19 +1,12 @@
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
-import { updateSummaries } from '../../actionCreators';
-import CALC_LOAN_SEND from '../actions';
+import { map, mergeMap } from 'rxjs/operators';
+import { updateSummaries, actions } from '../actionCreators';
 import { Requests } from '../../utils';
-
-const { map, mergeMap } = require('rxjs/operators');
-
-export const requestLoanCalc = (amount, time, insurance) => ({
-	type: CALC_LOAN_SEND,
-	payload: { amount, time, insurance },
-});
 
 const calculateLoanEpic = action$ =>
 	action$.pipe(
-		ofType(CALC_LOAN_SEND),
+		ofType(actions.CALC_LOAN_SEND),
 		mergeMap(({ payload }) =>
 			ajax
 				.getJSON(Requests.adjustLoan(payload.amount, payload.time, payload.insurance))

@@ -1,7 +1,7 @@
-import { server } from '../config';
+import config from '../config';
 
 const adjustLoan = (amount, time, insurance) =>
-	`${server.url}/loan?amount=${amount}&time=${time}&insurance=${insurance}`;
+	`${config.server.url}/loan?amount=${amount}&time=${time}&insurance=${insurance}`;
 
 export default {
 	adjustLoan,

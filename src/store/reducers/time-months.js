@@ -1,4 +1,6 @@
-import { UPDATE_MONTHS } from '../actions';
+import { actions } from '../actionCreators';
+
+const { UPDATE_MONTHS } = actions;
 
 const initialState = {
 	value: 96,
