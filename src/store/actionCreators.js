@@ -1,4 +1,12 @@
-import actions from './actions';
+const actions = {
+	UPDATE_LOAN: 'UPDATE_LOAN',
+	UPDATE_WITH_INSURANCE: 'UPDATE_WITH_INSURANCE',
+	UPDATE_MONTHS: 'UPDATE_MONTHS',
+	CALC_LOAN_SEND: 'CALC_LOAN_SEND',
+	UPDATE_SUMMARY_FIELDS: 'UPDATE_SUMMARY_FIELDS',
+	CALC_LOAN_SEND_DEBOUNCE: 'CALC_LOAN_SEND_DEBOUNCE',
+	QUERY_CANCELLED: 'QUERY_CANCELLED',
+};
 
 const updateLoanValue = value => ({
 	type: actions.UPDATE_LOAN,
@@ -37,4 +45,5 @@ export {
 	requestLoanCalc,
 	requestLoanCalcDebounce,
 	cancelRequest,
+	actions,
 };

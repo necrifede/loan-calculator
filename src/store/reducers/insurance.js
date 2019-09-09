@@ -1,4 +1,4 @@
-import actions from '../actions';
+import { actions } from '../actionCreators';
 
 const { UPDATE_WITH_INSURANCE } = actions;
 

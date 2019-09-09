@@ -1,8 +1,7 @@
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
 import { map, mergeMap } from 'rxjs/operators';
-import { updateSummaries } from '../actionCreators';
-import actions from '../actions';
+import { updateSummaries, actions } from '../actionCreators';
 import { Requests } from '../../utils';
 
 const calculateLoanEpic = action$ =>
