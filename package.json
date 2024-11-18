@@ -2,27 +2,29 @@
   "name": "loan-calculator",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@vitejs/plugin-react": "4.3.3",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.6",
-    "react-dom": "^16.8.6",
-    "react-rangeslider": "^2.2.0",
+    "react": "16.14.0",
+    "react-bootstrap": "1.6.8",
+    "react-dom": "16.14.0",
+    "react-rangeslider": "2.2.0",
     "react-redux": "^7.0.1",
-    "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-observable": "^1.1.0",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.4.0",
+    "vite": "5.4.11",
+    "vite-tsconfig-paths": "^5.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint --ext .js ./",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "standard",
     "server": "node server/index.js"
   },
   "eslintConfig": {
@@ -46,6 +48,6 @@
     "eslint-plugin-react": "^7.11.1",
     "prettier": "^1.18.2",
     "snazzy": "^8.0.0",
-    "standard": "^12.0.1"
+    "standard": "17.1.2"
   }
 }
