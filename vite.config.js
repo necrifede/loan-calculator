@@ -1,7 +1,5 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import viteTsconfigPaths from 'vite-tsconfig-paths'
-import { resolve } from 'path'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   // depending on your application, base can also be "/"
@@ -14,10 +12,4 @@ export default defineConfig({
     // this sets a default port to 3000
     port: 3000
   }
-  // resolve: {
-  //   alias: {
-  //     'react/jsx-dev-runtime.js': resolve(__dirname, 'node_modules/react/jsx-dev-runtime.js'),
-  //     'react/jsx-runtime.js': resolve(__dirname, 'node_modules/react/jsx-runtime.js')
-  //   }
-  // }
 })
