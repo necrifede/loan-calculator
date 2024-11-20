@@ -1,5 +1,5 @@
+import { Slider } from '@nextui-org/slider'
 import React, { useMemo } from 'react'
-import Slider from 'react-rangeslider'
 import { useLoanStore } from 'src/store/loanStore'
 import { debounce } from 'src/utils/debounce'
 
@@ -12,37 +12,45 @@ const TimeMonths = () => {
   const handleLoanCalculation = useMemo(() => debounce(loanCalculation), [])
 
   return (
-    <div className='row top-buffer'>
+    <div className='row top-buffer  my-4'>
       <div className='col-sm-8'>
         <h5 className='sectionTitle'>For how long</h5>
         <Slider
-          value={value}
-          min={min}
-          max={max}
+          aria-label='slider-time-months'
+          defaultValue={value}
+          minValue={min}
+          maxValue={max}
           orientation='horizontal'
-          labels={{ [min]: `${min} Month`, [max]: `${max} Months` }}
+          marks={[
+            { value: min, label: `${min}\u00A0Months` },
+            { value: max, label: `${max}\u00A0Months` }
+          ]}
           step={1}
-          onChangeStart={cancelLoanCalculation}
-          onChange={value => updateMonthsValue(value)}
-          tooltip={false}
-          onChangeComplete={handleLoanCalculation}
-          style={{ fontSize: '12px' }}
-        />
-      </div>
-      <div className='col-sm-3'>
-        <input
-          className='loanAmount form-control center'
-          type='number'
-          onChange={event => {
-            // TODO: validate value is a inside range
-            updateMonthsValue(event.target.value)
+          onChange={value => {
             cancelLoanCalculation()
-            handleLoanCalculation()
+            updateMonthsValue(value)
           }}
-          value={value}
+          onChangeEnd={handleLoanCalculation}
         />
       </div>
-      <div className='col-sm-1 text-left pl-0'>Months</div>
+      <div className='col-sm-4 d-flex align-items-center'>
+        <div className='row'>
+          <div className='col-sm-8'>
+            <input
+              className='loanAmount form-control'
+              type='number'
+              onChange={event => {
+                // TODO: validate value is a inside range
+                updateMonthsValue(event.target.value)
+                cancelLoanCalculation()
+                handleLoanCalculation()
+              }}
+              value={value}
+            />
+          </div>
+          <div className='col-sm-4 text-left'>Months</div>
+        </div>
+      </div>
     </div>
   )
 }

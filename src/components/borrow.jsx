@@ -1,11 +1,7 @@
+import { Slider } from '@nextui-org/slider'
 import React, { useMemo } from 'react'
-import Slider from 'react-rangeslider'
 import { useLoanStore } from 'src/store/loanStore'
 import { debounce } from 'src/utils/debounce'
-
-// TODO: refactor constant values in attributes
-// TODO: Warning: Failed prop type: Invalid prop `value` of type `string` supplied to `Slider`, expected `number`.
-// TODO: control integer values
 
 /**
  * Shows in UI the amount of lend, or to borrow.
@@ -19,36 +15,45 @@ const Borrow = () => {
   const handleLoanCalculation = useMemo(() => debounce(loanCalculation), [])
 
   return (
-    <div className='row  top-buffer'>
+    <div className='row top-buffer my-4'>
       <div className='col-sm-8'>
         <h5 className='sectionTitle'>How much I want to borrow</h5>
         <Slider
-          value={value}
-          min={min}
-          max={max}
+          className='max-w-md'
+          aria-label='slider-borrow'
+          defaultValue={value}
+          minValue={min}
+          maxValue={max}
           orientation='horizontal'
-          labels={{ [min]: `${min} Kč`, [max]: `${max} Kč` }}
-          step={100}
-          onChangeStart={cancelLoanCalculation}
-          onChange={value => updateLoanValue(value)}
-          tooltip={false}
-          onChangeComplete={handleLoanCalculation}
-          style={{ fontSize: '12px' }}
-        />
-      </div>
-      <div className='col-sm-3'>
-        <input
-          className='loanAmount form-control center'
-          type='number'
-          onChange={event => {
-            updateLoanValue(event.target.value)
+          step={1}
+          onChange={value => {
             cancelLoanCalculation()
-            handleLoanCalculation()
+            updateLoanValue(value)
           }}
-          value={value}
+          onChangeEnd={handleLoanCalculation}
+          marks={[
+            { value: min, label: `${min}\u00A0Kč` },
+            { value: max, label: `${max}\u00A0Kč` }
+          ]}
         />
       </div>
-      <div className='col-sm-1 text-left pl-0'>Kč</div>
+      <div className='col-sm-4 d-flex align-items-center'>
+        <div className='row'>
+          <div className='col-sm-8'>
+            <input
+              className='loanAmount form-control'
+              type='number'
+              onChange={event => {
+                updateLoanValue(event.target.value)
+                cancelLoanCalculation()
+                handleLoanCalculation()
+              }}
+              value={value}
+            />
+          </div>
+          <div className='col-sm-4 text-left'>Kč</div>
+        </div>
+      </div>
     </div>
   )
 }

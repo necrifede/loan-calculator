@@ -17,8 +17,8 @@ const Insurance = () => {
           <h5 className='sectionTitle'>Insurance against inability to repay the loan</h5>
         </div>
       </div>
-      <div className='row'>
-        <div className='custom-control custom-radio custom-control-inline'>
+      <div className='row mb-5'>
+        <div className='col-sm-6 custom-control custom-radio custom-control-inline text-right'>
           <input
             type='radio'
             id='withInsuranceRadio'
@@ -31,11 +31,11 @@ const Insurance = () => {
               loanCalculation()
             }}
           />
-          <label className='custom-control-label' htmlFor='withInsuranceRadio'>
+          <label className='custom-control-label ml-1' htmlFor='withInsuranceRadio'>
             With insurance
           </label>
         </div>
-        <div className='custom-control custom-radio custom-control-inline'>
+        <div className='col-sm-6 custom-control custom-radio custom-control-inline text-left'>
           <input
             type='radio'
             id='withoutInsuranceRadio'
@@ -48,7 +48,7 @@ const Insurance = () => {
               loanCalculation()
             }}
           />
-          <label className='custom-control-label' htmlFor='withoutInsuranceRadio'>
+          <label className='custom-control-label ml-1' htmlFor='withoutInsuranceRadio'>
             Without insurance
           </label>
         </div>

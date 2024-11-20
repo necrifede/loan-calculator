@@ -33,8 +33,9 @@ export const useLoanStore = create(devtools((set, get) => ({
     const amount = get().borrow.value
     const time = get().months.value
     const withInsurance = get().insurance.withi
+    const monthlyPay = get().summary.monthly
 
-    const { monthly, interest, apr, insurance, total } = await fetchLoan(amount, time, withInsurance) ?? initialState.summary
+    const { monthly, interest, apr, insurance, total } = await fetchLoan(amount, time, withInsurance) ?? { ...initialState.summary, monthly: monthlyPay }
 
     set({ summary: { monthly, interest, apr, insurance, total }, fetching: false })
   },
