@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Slider from 'react-rangeslider'
 import { useLoanStore } from 'src/store/loanStore'
+import { debounce } from 'src/utils/debounce'
 
 // TODO: refactor constant values in attributes
 // TODO: Warning: Failed prop type: Invalid prop `value` of type `string` supplied to `Slider`, expected `number`.
@@ -14,6 +15,8 @@ const Borrow = () => {
   const updateLoanValue = useLoanStore(state => state.updateLoanValue)
   const cancelLoanCalculation = useLoanStore(state => state.cancelLoanCalculation)
   const loanCalculation = useLoanStore(state => state.loanCalculation)
+
+  const handleLoanCalculation = useMemo(() => debounce(loanCalculation), [])
 
   return (
     <div className='row  top-buffer'>
@@ -29,7 +32,7 @@ const Borrow = () => {
           onChangeStart={cancelLoanCalculation}
           onChange={value => updateLoanValue(value)}
           tooltip={false}
-          onChangeComplete={() => loanCalculation()}
+          onChangeComplete={handleLoanCalculation}
           style={{ fontSize: '12px' }}
         />
       </div>
@@ -39,7 +42,8 @@ const Borrow = () => {
           type='number'
           onChange={event => {
             updateLoanValue(event.target.value)
-            loanCalculation()
+            cancelLoanCalculation()
+            handleLoanCalculation()
           }}
           value={value}
         />

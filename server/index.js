@@ -13,6 +13,8 @@ const app = express()
 // TODO: Enable All CORS Requests, This is not good, control with CORS options
 app.use(cors())
 
+const DELAY_RESPONSE = 2000
+
 /**
  * calculate the monthly pay for a loan
  * using formula:
@@ -61,7 +63,7 @@ app.get('/loan', function (req, res) {
   setTimeout(() => {
     console.log('GET result: ', Date(), '\n', result)
     return res.status(200).send(result)
-  }, 2000)
+  }, DELAY_RESPONSE)
 })
 
 app.use(function (req, res) {

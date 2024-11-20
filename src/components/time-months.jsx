@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Slider from 'react-rangeslider'
 import { useLoanStore } from 'src/store/loanStore'
+import { debounce } from 'src/utils/debounce'
 
 const TimeMonths = () => {
   const { value, min, max } = useLoanStore(state => state.months)
   const loanCalculation = useLoanStore(state => state.loanCalculation)
   const updateMonthsValue = useLoanStore(state => state.updateMonthsValue)
   const cancelLoanCalculation = useLoanStore(state => state.cancelLoanCalculation)
+
+  const handleLoanCalculation = useMemo(() => debounce(loanCalculation), [])
 
   return (
     <div className='row top-buffer'>
@@ -22,7 +25,7 @@ const TimeMonths = () => {
           onChangeStart={cancelLoanCalculation}
           onChange={value => updateMonthsValue(value)}
           tooltip={false}
-          onChangeComplete={() => loanCalculation()}
+          onChangeComplete={handleLoanCalculation}
           style={{ fontSize: '12px' }}
         />
       </div>
@@ -33,7 +36,8 @@ const TimeMonths = () => {
           onChange={event => {
             // TODO: validate value is a inside range
             updateMonthsValue(event.target.value)
-            loanCalculation()
+            cancelLoanCalculation()
+            handleLoanCalculation()
           }}
           value={value}
         />

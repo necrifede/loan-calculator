@@ -1,4 +1,4 @@
-import { fetchLoan } from 'src/api/loan'
+import { cancelFetchLoan, fetchLoan } from 'src/api/loan'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
@@ -34,14 +34,12 @@ export const useLoanStore = create(devtools((set, get) => ({
     const time = get().months.value
     const withInsurance = get().insurance.withi
 
-    const { monthly, interest, apr, insurance, total } = await fetchLoan(amount, time, withInsurance)
-    console.log('monthly: ', monthly)
-    console.log('total: ', total)
+    const { monthly, interest, apr, insurance, total } = await fetchLoan(amount, time, withInsurance) ?? initialState.summary
 
     set({ summary: { monthly, interest, apr, insurance, total }, fetching: false })
   },
 
-  cancelLoanCalculation: () => {},
+  cancelLoanCalculation: () => cancelFetchLoan(),
   updateLoanValue: value => set({ borrow: { ...get().borrow, value } }),
   updateMonthsValue: value => set({ months: { ...get().months, value } }),
   updateInsurance: value => set({ insurance: { ...get().insurance, withi: value } })

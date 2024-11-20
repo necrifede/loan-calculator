@@ -8,6 +8,7 @@ const Insurance = () => {
   const { withi } = useLoanStore(state => state.insurance)
   const updateInsurance = useLoanStore(state => state.updateInsurance)
   const loanCalculation = useLoanStore(state => state.loanCalculation)
+  const cancelLoanCalculation = useLoanStore(state => state.cancelLoanCalculation)
 
   return (
     <div>
@@ -26,13 +27,9 @@ const Insurance = () => {
             checked={withi === true}
             onChange={() => {
               updateInsurance(true)
+              cancelLoanCalculation()
               loanCalculation()
             }}
-            // onChange={() => {
-            //   updateInsuranceValue(true)
-            //   cancelRequest()
-            //   requestLoanCalcDebounce()
-            // }}
           />
           <label className='custom-control-label' htmlFor='withInsuranceRadio'>
             With insurance
@@ -47,6 +44,7 @@ const Insurance = () => {
             checked={withi === false}
             onChange={() => {
               updateInsurance(false)
+              cancelLoanCalculation()
               loanCalculation()
             }}
           />

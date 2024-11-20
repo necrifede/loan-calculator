@@ -14,7 +14,7 @@ const SummaryLoan = () => {
 
   return (
     <div className='row top-buffer'>
-      <p>{`Interest rate from ${interest}%, APR from ${apr}%, insurance ${insurance} CZK / Monthly, fee for negotiation online 0 CZK, total pay ${Number(Math.round(total * 100) / 100).toLocaleString()} CZK`}
+      <p>{`Interest rate from ${interest * 100} %, APR from ${apr} %, insurance ${insurance} CZK / Monthly, fee for negotiation online 0 CZK, total pay ${Number(Math.round(total * 100) / 100).toLocaleString()} CZK`}
       </p>
     </div>
   )
