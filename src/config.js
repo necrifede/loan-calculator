@@ -1,8 +1,12 @@
 const config = {
   server: {
     host: 'localhost',
-    port: 3004
-  }
+    port: 3004,
+    get url () {
+      return `http://${this.host}:${this.port}`
+    }
+  },
+  DEBOUNCE_TIME: 500
 }
 
-module.exports = config
+export default config
