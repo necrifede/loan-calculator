@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { useLoanStore } from 'src/store/loanStore'
 
 /**
  * Component shows a label with a summary of loan information
@@ -10,7 +9,9 @@ import PropTypes from 'prop-types'
  * @param {number} insurance - Percentage taken into account for the calculation
  * @param {number} total - Total amount payed after complete all payments
  */
-const SummaryLoan = ({ interest, apr, insurance, total }) => {
+const SummaryLoan = () => {
+  const { interest, apr, insurance, total } = useLoanStore(state => state.summary)
+
   return (
     <div className='row top-buffer'>
       <p>{`Interest rate from ${interest}%, APR from ${apr}%, insurance ${insurance} CZK / Monthly, fee for negotiation online 0 CZK, total pay ${Number(Math.round(total * 100) / 100).toLocaleString()} CZK`}
@@ -19,18 +20,4 @@ const SummaryLoan = ({ interest, apr, insurance, total }) => {
   )
 }
 
-SummaryLoan.propTypes = {
-  apr: PropTypes.number,
-  insurance: PropTypes.number,
-  interest: PropTypes.number,
-  total: PropTypes.number
-}
-
-const mapStateToProps = state => ({
-  interest: state.summary.interest,
-  apr: state.summary.apr,
-  insurance: state.summary.insurance,
-  total: state.summary.total
-})
-
-export default connect(mapStateToProps)(SummaryLoan)
+export default SummaryLoan
